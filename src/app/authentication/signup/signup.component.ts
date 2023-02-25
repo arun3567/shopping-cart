@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { AuthService } from '../auth.service';
 import { User } from '../user.model';
 
 @Component({
@@ -11,7 +12,7 @@ export class SignupComponent implements OnInit {
 
   user : User[]=[];
 
-  constructor() { }
+  constructor(private authService : AuthService) { }
 
   ngOnInit(): void {
   }
@@ -19,20 +20,7 @@ export class SignupComponent implements OnInit {
   onSubmit(form: NgForm) {
     const value = form.value;
     const newUser = new User(value.userName, value.email, value.password);
-
-    const users = JSON.parse(localStorage.getItem('users') || '[]');
-
-    const existingUser = users.find((user: User) =>
-    (user.email === newUser.email,user.userName === newUser.userName));
-    if (existingUser) {
-      alert('Username or Email already exists!');
-      return;
-    }
-
-    users.push(newUser);
-    localStorage.setItem(`user${users.length}`, JSON.stringify(newUser));
-    localStorage.setItem('users', JSON.stringify(users));
-
+    this.authService.signUp(newUser);
     console.log(newUser);
   }
 

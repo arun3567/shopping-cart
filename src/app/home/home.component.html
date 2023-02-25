@@ -5,11 +5,29 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
-      <a class="nav-item nav-link" routerLink="/cart">Cart</a>
-      <a class="nav-item nav-link" routerLink="/shoppingCart">Cart2</a>
-      <a class="nav-item nav-link" routerLink="/login">Login</a>
-      <a class="nav-item nav-link" routerLink="/signup">Sign Up</a>
-      <p>{{users}}</p>
+      <ul>
+        <li *ngIf="isUserAuthenticated">
+          <a class="nav-item nav-link" routerLink="/cart">Cart</a>
+        </li>
+        <li *ngIf="isUserAuthenticated">
+          <a class="nav-item nav-link" routerLink="/shoppingCart">Cart2</a>
+        </li>
+        <li *ngIf="!isUserAuthenticated">
+          <a class="nav-item nav-link" routerLink="/login">Login</a>
+        </li>
+        <li *ngIf="isUserAuthenticated">
+          <a class="nav-item nav-link" (click)="onLogout()">Log Out</a>
+        </li>
+        <li *ngIf="!isUserAuthenticated">
+          <a class="nav-item nav-link" routerLink="/signup">Sign Up</a>
+        </li>
+      </ul>
+
+
+
+
+
     </div>
   </div>
 </nav>
+

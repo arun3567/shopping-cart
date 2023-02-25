@@ -9,13 +9,13 @@ import { ProductCreateComponent } from './product/product-create/product-create.
 import { ProductListComponent } from './product/product-list/product-list.component';
 
 const routes: Routes = [
-  {path : "" ,redirectTo: "/login",pathMatch: 'full' },
+  // {path : "" ,redirectTo: "/login",pathMatch: 'full' },
+  {path : '', component : ProductListComponent,canActivate: [AuthGuard]},
   { path: 'login', component: LoginComponent },
   {path : 'signup',component : SignupComponent},
-  {path : "home" , component : HomeComponent},
-  {path : 'cart', component : ProductCreateComponent},
-  {path : 'list', component : ProductListComponent},
-  { path : 'shoppingCart', component : CartComponent}
+  {path : 'cart', component : ProductCreateComponent,canActivate: [AuthGuard]},
+  // {path : 'list', component : ProductListComponent},
+  { path : 'shoppingCart', component : CartComponent,canActivate: [AuthGuard]}
 
 ];
 

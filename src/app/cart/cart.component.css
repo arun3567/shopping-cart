@@ -1,0 +1,31 @@
+.container {
+  display: flex;
+  flex-direction: row;
+}
+
+.box {
+  margin-top: 1cm;
+  width: 800px;
+  height: 500px;
+  border: 1px solid black;
+  margin-right: 10px;
+}
+.box2 {
+  margin-top: 1cm;
+  margin-left: 2cm;
+  width: 400px;
+  height: 500px;
+  border: 1px solid red;
+  margin-right: 10px;
+}
+
+img{
+  margin-left: 1cm;
+  width: 100px;
+  height: 100px;
+}
+
+.product-card img {
+  max-width: 100%;
+  height: auto;
+}

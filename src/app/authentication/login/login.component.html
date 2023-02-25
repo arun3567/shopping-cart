@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="row row-smaller">
+    <div class="col-md-6 flex-item">
+      <h3>Please Login</h3>
+      <form (ngSubmit)="onSubmit(loginForm)" #loginForm="ngForm">
+        <div class="userName">
+          <label>UserName</label>
+          <input class="form-control" type="text" name="userName" ngModel required #userName="ngModel">
+        </div>
+        <div class="email">
+          <label>Email</label>
+          <input class="form-control" type="email" name="email" ngModel required #email="ngModel">
+        </div>
+        <div class="password">
+          <label>Password</label>
+          <input class="form-control" type="password" name="password" ngModel required #password="ngModel">
+        </div>
+
+        <br>
+        <button type="submit" class="btn btn-success">Login</button>
+
+        <p>Don't have an account <a routerLink="/signup">Signup</a></p>
+      </form>
+    </div>
+  </div>
+</div>

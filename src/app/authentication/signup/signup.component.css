@@ -1,0 +1,22 @@
+.container{
+  border: 2px solid black;
+  margin-top: 2cm;
+  width: 600px;
+  height: 450px;
+}
+
+.row{
+  border: 2px solid red;
+  height: 450px;
+}
+
+label{
+  font-style: italic;
+  margin-bottom: 10px;
+}
+
+input{
+  margin-left: 16px;
+  margin-top: 10px;
+  width: 10cm;
+}

@@ -4,19 +4,19 @@ import { AuthGuard } from './authentication/auth-guard';
 import { LoginComponent } from './authentication/login/login.component';
 import { SignupComponent } from './authentication/signup/signup.component';
 import { CartComponent } from './cart/cart.component';
-import { HomeComponent } from './home/home.component';
+import { ErrorComponent } from './error/error.component';
 import { ProductCreateComponent } from './product/product-create/product-create.component';
+import { ProductDetailsComponent } from './product/product-details/product-details.component';
 import { ProductListComponent } from './product/product-list/product-list.component';
 
 const routes: Routes = [
-  // {path : "" ,redirectTo: "/login",pathMatch: 'full' },
   {path : '', component : ProductListComponent,canActivate: [AuthGuard]},
-  { path: 'login', component: LoginComponent },
-  {path : 'signup',component : SignupComponent},
+  {path : 'login' , component : LoginComponent},
+  {path : 'signup' , component: SignupComponent},
   {path : 'cart', component : ProductCreateComponent,canActivate: [AuthGuard]},
-  // {path : 'list', component : ProductListComponent},
-  { path : 'shoppingCart', component : CartComponent,canActivate: [AuthGuard]}
-
+  {path : 'product/:id', component: ProductDetailsComponent,canActivate: [AuthGuard] },
+  {path : 'shoppingCart', component : CartComponent,canActivate: [AuthGuard]},
+  {path : '**',component : ErrorComponent}
 ];
 
 @NgModule({
@@ -24,4 +24,4 @@ const routes: Routes = [
   exports: [RouterModule],
   providers : [AuthGuard]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

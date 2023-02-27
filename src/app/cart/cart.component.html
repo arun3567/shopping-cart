@@ -1,26 +1,67 @@
-<div class="container">
-  <div class="box">
-    <h3>Products In Cart</h3>
-    <ul *ngFor="let product of carts">
-      <img class="card-img-top" [src]="product.image" alt="{{ product.name }}" width="50px">
-      <li>Product Name : {{product.name}}</li>
-      <li>Product Price : {{product.price | currency:'USD':'symbol':'1.2-2'}}</li>
-      <li>Product Description : {{product.description}}</li>
-      <button class="btn btn-primary" (click)="increment(product)">+</button>
-      <span *ngIf="!product.quantity">1</span>
-      <span *ngIf="product.quantity">{{product.quantity}}</span>
-      <button class="btn btn-primary" (click)="decrement(product)">-</button>
-    </ul>
-  </div>
-  <div class="box2">
-    <h3>Product Details</h3>
-    <ul *ngFor="let product of carts">
-      <p>Product Price : {{product.price}}</p>
-      <p>No of Product : {{product.quantity}}</p>
-      <p>Quantity : {{quantity}}</p>
-
-    </ul>
-    <p>Total Price : {{ getTotalPrice() | currency }}</p>
+<alert type="danger" *ngIf="carts.length == 0">
+  <strong>Cart Is Empty</strong> Please Select Product
+</alert>
+<div class="container" *ngIf="carts.length > 0">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header bg-white">
+          <h3 class="text-primary">Products In Cart</h3>
+        </div>
+        <div class="card-body">
+          <ul *ngFor="let product of carts" class="list-group mb-3">
+            <li class="list-group-item">
+              <div class="row align-items-center">
+                <div class="col-md-2">
+                  <img [src]="product.image" alt="{{ product.name }}" class="img-fluid rounded" width="80">
+                </div>
+                <div class="col-md-6">
+                  <h5 class="card-title">{{product.name}}</h5>
+                  <p class="card-text">{{product.description}}</p>
+                  <p class="card-text">{{product.price | currency:'USD':'symbol':'1.2-2'}}</p>
+                </div>
+                <div class="col-md-4 d-flex align-items-center justify-content-end">
+                  <div class="input-group">
+                    <button class="btn btn-outline-secondary me-2 rounded" type="button" (click)="decrement(product)">-</button>
+                    <span class="input-group-text rounded">{{product.quantity}}</span>
+                    <button class="btn btn-outline-secondary ms-2 me-2 rounded" type="button" (click)="increment(product)">+</button>
+                    <button class="btn btn-danger rounded" type="button" (click)="removeProduct(product)">Remove</button>
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header bg-white">
+          <h3 class="text-danger">Product Details</h3>
+        </div>
+        <div class="card-body">
+          <ul *ngFor="let product of carts" class="list-group mb-3">
+            <li class="list-group-item">
+              <div class="d-flex justify-content-between mb-2">
+                <p class="card-text">Product Name :</p>
+                <h5 class="card-text text-end">{{product.name}}</h5>
+              </div>
+              <div class="d-flex justify-content-between mb-2">
+                <p class="card-text">Product Price :</p>
+                <h5 class="card-text text-end">{{product.price | currency }}</h5>
+              </div>
+            </li>
+          </ul>
+          <div class="d-flex justify-content-between mb-2">
+            <p class="card-text">No of Quantity: </p>
+            <h5 class="card-text text-end">{{getProductQuantity()}}</h5>
+          </div>
+          <div class="d-flex justify-content-between mb-2">
+            <h5 class="card-text">Total Price:</h5>
+            <h5 class="card-text text-end">{{ getTotalPrice() | currency }}</h5>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
-

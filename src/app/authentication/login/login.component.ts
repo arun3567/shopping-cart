@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
-import { User } from '../user.model';
 
 @Component({
   selector: 'app-login',
@@ -11,9 +9,7 @@ import { User } from '../user.model';
 })
 export class LoginComponent implements OnInit {
 
-  user : User[]=[];
-
-  constructor(private router : Router,private authService : AuthService) { }
+  constructor(private authService : AuthService) { }
 
   ngOnInit(): void {
 
@@ -22,9 +18,6 @@ export class LoginComponent implements OnInit {
   onSubmit(form: NgForm) {
     const value = form.value;
     this.authService.login(value);
-
   }
-
-
 
 }

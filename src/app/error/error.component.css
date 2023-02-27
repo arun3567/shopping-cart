@@ -1,0 +1,10 @@
+.container {
+  text-align: center;
+  margin-top: 50px;
+}
+
+h1 {
+  color: #007bff;
+  text-transform: uppercase;
+  margin-bottom: 30px;
+}

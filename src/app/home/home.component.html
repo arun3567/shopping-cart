@@ -1,33 +1,29 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-dark">
-  <a class="navbar-brand" routerLink="/list">Home</a>
+  <a class="navbar-brand" *ngIf="isUserAuthenticated" routerLink="/">Home</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-    <div class="navbar-nav">
+    <div class="navbar-nav ml-auto">
       <ul>
         <li *ngIf="isUserAuthenticated">
-          <a class="nav-item nav-link" routerLink="/cart">Cart</a>
+          <a class="nav-item nav-link" routerLink="/cart">Add Product</a>
         </li>
         <li *ngIf="isUserAuthenticated">
-          <a class="nav-item nav-link" routerLink="/shoppingCart">Cart2</a>
+          <a class="nav-item nav-link" routerLink="/shoppingCart">Cart</a>
         </li>
         <li *ngIf="!isUserAuthenticated">
           <a class="nav-item nav-link" routerLink="/login">Login</a>
         </li>
         <li *ngIf="isUserAuthenticated">
-          <a class="nav-item nav-link" (click)="onLogout()">Log Out</a>
+          <a class="nav-item nav-link" style="cursor : pointer" (click)="onLogout()">Log Out</a>
         </li>
         <li *ngIf="!isUserAuthenticated">
           <a class="nav-item nav-link" routerLink="/signup">Sign Up</a>
         </li>
       </ul>
-
-
-
-
-
     </div>
   </div>
 </nav>
+
 

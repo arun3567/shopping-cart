@@ -26,11 +26,22 @@ export class AuthService {
     if (currentUser && currentUser.password === value.password) {
       console.log('Login successful:', currentUser);
       this.router.navigate(['/']);
+      this.isAuthenticated = true;
+      localStorage.setItem('isAuthenticated', 'true'); // set authentication status flag in local storage
+      this.authStatusListener.next(true); // emit authentication status change
     } else {
       alert('Invalid Credentials!');
     }
-    this.isAuthenticated = true;
   }
+
+  logout() {
+    localStorage.removeItem('currentUser');
+    this.router.navigate(['/login']);
+    this.isAuthenticated = false;
+    localStorage.removeItem('isAuthenticated'); // clear authentication status flag in local storage
+    this.authStatusListener.next(false); // emit authentication status change
+  }
+
 
   signUp(newUser : User){
     const users = JSON.parse(localStorage.getItem('users') || '[]');
@@ -46,11 +57,12 @@ export class AuthService {
     localStorage.setItem('users', JSON.stringify(users));
   }
 
-  logout() {
-    localStorage.removeItem('currentUser');
-    this.router.navigate(['/login']);
-    this.isAuthenticated = false;
-  }
+  // logout() {
+  //   localStorage.removeItem('currentUser');
+  //   this.router.navigate(['/login']);
+  //   this.isAuthenticated = false;
+  //   this.authStatusListener.next(false); // emit authentication status change
+  // }
 
   onGetUser(){
     const users = JSON.parse(localStorage.getItem('users') || '[]');
@@ -61,5 +73,12 @@ export class AuthService {
     return this.isAuthenticated;
   }
 
+  checkAuthStatusOnRefresh() {
+    const currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
+    if (currentUser && currentUser.id) {
+      this.isAuthenticated = true;
+      this.authStatusListener.next(true); // emit authentication status change
+    }
+  }
 
 }

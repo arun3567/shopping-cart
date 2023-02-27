@@ -3,31 +3,39 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ProductListComponent } from './product/product-list/product-list.component';
-import { ProductDetailsComponent } from './product/product-details/product-details.component';
-import { ProductCreateComponent } from './product/product-create/product-create.component';
+
 import { FormsModule } from '@angular/forms';
-import { LoginComponent } from './authentication/login/login.component';
-import { SignupComponent } from './authentication/signup/signup.component';
 import { HomeComponent } from './home/home.component';
 import { CartComponent } from './cart/cart.component';
-// import { AuthModule } from './authentication/auth.module';
+import { AlertModule } from 'ngx-bootstrap/alert';
+import { SearchPipe } from './product/search.pipe';
+import { ErrorComponent } from './error/error.component';
+import { ProductCreateComponent } from './product/product-create/product-create.component';
+import { ProductListComponent } from './product/product-list/product-list.component';
+import { ProductDetailsComponent } from './product/product-details/product-details.component';
+import { SignupComponent } from './authentication/signup/signup.component';
+import { LoginComponent } from './authentication/login/login.component';
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
+    ProductCreateComponent,
     ProductListComponent,
     ProductDetailsComponent,
-    ProductCreateComponent,
     HomeComponent,
-    LoginComponent,
+    CartComponent,
+    SearchPipe,
+    ErrorComponent,
     SignupComponent,
-    CartComponent
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    AlertModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]

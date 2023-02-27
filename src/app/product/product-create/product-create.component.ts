@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Product } from '../product.model';
@@ -11,6 +11,7 @@ import { ProductService } from '../product.service';
 })
 export class ProductCreateComponent implements OnInit {
 
+  @ViewChild('productForm', {static : true}) productForm! : NgForm;
   constructor(public productService : ProductService,private router: Router) { }
 
   ngOnInit(): void {
@@ -20,7 +21,8 @@ export class ProductCreateComponent implements OnInit {
     const value = form.value;
     const newProduct = new Product(value.name, value.price, value.description, value.image);
     this.productService.addProduct(newProduct);
-    this.router.navigate(['/list']);
+    this.productForm.reset();
+    this.router.navigate(['/']);
   }
 
 }

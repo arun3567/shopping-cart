@@ -14,7 +14,7 @@ export class ProductListComponent implements OnInit {
 
   products: Product[]=[];
 
-  carts : Product[]=[];
+  searchText!: string;
 
   constructor(private productService: ProductService,private router : Router) { }
 
@@ -26,15 +26,10 @@ export class ProductListComponent implements OnInit {
     this.productService.onAddCart(product);
   }
 
-  onEdit(index : number){
-
+  onClick(index : any){
+    this.productService.editting.next(index);
+    console.log(index);
+    this.router.navigate(['/product',index])
   }
 
-  onDelete(index : number){
-
-  }
-
-  onSelect(index : number){
-
-  }
 }

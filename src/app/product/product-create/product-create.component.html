@@ -1,22 +1,23 @@
 <div class="container">
-  <div class="row">
+  <div class="row justify-content-center">
     <div class="col-md-6">
-      <form (ngSubmit)="onSubmit(productForm)" #productForm="ngForm">
-        <div>
-          <label for="name">Name</label>
-          <input type="text" ngModel name="name" class="form-control">
+      <h4 class="card-title text-center">Add Product</h4>
+      <form (ngSubmit)="onSubmit(productForm)" #productForm="ngForm" class="shadow p-3 mb-5 bg-body rounded">
+        <div class="mb-3">
+          <label for="name" class="form-label">Product Name</label>
+          <input type="text" ngModel name="name" class="form-control" id="name">
         </div>
-        <div>
-          <label for="price">Price:</label>
-          <input type="text" ngModel name="price"class="form-control">
+        <div class="mb-3">
+          <label for="price" class="form-label">Price:</label>
+          <input type="text" ngModel name="price"class="form-control" id="price">
         </div>
-        <div>
-          <label for="description">Description</label>
-          <textarea type="text" ngModel name="description" class="form-control"></textarea>
+        <div class="mb-3">
+          <label for="description" class="form-label">Description</label>
+          <textarea type="text" ngModel name="description" class="form-control" id="description"></textarea>
         </div>
-        <div>
-          <label for="image">Image</label>
-          <input type="text" ngModel name="image" class="form-control">
+        <div class="mb-3">
+          <label for="image" class="form-label">Image</label>
+          <input type="text" ngModel name="image" class="form-control" id="image">
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>

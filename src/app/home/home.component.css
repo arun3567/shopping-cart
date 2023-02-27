@@ -2,6 +2,30 @@ a{
   color: aliceblue;
 }
 
-a:hover{
+nav a:hover{
   color: red;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 2cm;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav li {
+  margin: 0 10px;
+}
+
+nav a {
+  margin-left: 0.5cm;
+  color: aliceblue;
+  text-decoration: none;
 }

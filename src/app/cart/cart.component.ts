@@ -11,30 +11,43 @@ export class CartComponent implements OnInit {
 
   carts : Product[]=[];
 
-  quantity : number = 1;
+  quantity! : number;
+
+  numberOfProduct! : number;
 
   totalPrice! : number;
 
   constructor(private productService : ProductService) { }
 
+  // ngOnInit(): void {
+  //   this.carts = this.productService.carts;
+  // }
+
   ngOnInit(): void {
-    this.carts = this.productService.carts;
-  }
-
-  increment(product: Product) {
-    product.quantity = (product.quantity ?? 0) + 1;
-  }
-
-  decrement(product: Product) {
-    if (product.quantity && product.quantity > 1) {
-      product.quantity--;
-    } else {
-      product.quantity = 1;
+    const cartData = localStorage.getItem('carts');
+    if (cartData) {
+      this.carts = JSON.parse(cartData);
     }
   }
 
 
+  increment(product : any) {
+    product.quantity++;
+    this.quantity++;
+    this.updateCartData();
+  }
 
+  decrement(product: any) {
+    if (product.quantity > 1) {
+      product.quantity--;
+      this.quantity--;
+      this.updateCartData();
+    }
+  }
+
+  updateCartData(): void {
+    localStorage.setItem('carts', JSON.stringify(this.carts));
+  }
 
 
   getTotalPrice(): number {
@@ -46,6 +59,26 @@ export class CartComponent implements OnInit {
     }
     return totalPrice;
   }
+
+  getProductQuantity() {
+    return this.carts.reduce((acc, curr) => {
+      if (curr.quantity !== undefined) {
+        return acc + curr.quantity;
+      } else {
+        return acc;
+      }
+    }, 0);
+  }
+
+  removeProduct(product: Product): void {
+    const productIndex = this.carts.findIndex((p) => p.name === product.name);
+    if (productIndex !== -1) {
+      this.carts.splice(productIndex, 1);
+      localStorage.setItem('carts', JSON.stringify(this.carts));
+    }
+  }
+
+
 
 
 }
